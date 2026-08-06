@@ -64,16 +64,16 @@ Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded usin
 ## Technologies Used
 
 ```
-•	R
-•	Seurat v5
-•	Signac
-•	Harmony / FastMNN (where applicable)
-•	ggplot2
-•	patchwork
-•	dplyr
-•	Matrix
-•	GenomicRanges
-•	Bioconductor packages
+R
+Seurat v5
+Signac
+Harmony / FastMNN (where applicable)
+ggplot2
+patchwork
+dplyr
+Matrix
+GenomicRanges
+Bioconductor packages
 ```
 
 
