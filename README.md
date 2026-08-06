@@ -75,7 +75,9 @@ Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded usin
 
 
 Results
+
 The reproduced figures are available in the Figures/ directory, including:
+
 ```
 •	Quality-control visualizations
 •	Dimensionality reduction (UMAP)
