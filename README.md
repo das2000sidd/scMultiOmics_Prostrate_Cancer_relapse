@@ -103,4 +103,4 @@ Skills Demonstrated
 •	Scientific programming
 •	Workflow organization
 ```
-<img width="468" height="635" alt="image" src="https://github.com/user-attachments/assets/8e8516cf-3189-48d1-ba0d-0d3530b0e84e" />
+
