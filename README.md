@@ -35,9 +35,11 @@ Scripts
 
 README.md
 sessionInfo
+
 ```
 
 Analyses Performed
+```
 The workflow includes following for single cell RNA-seq or scATAC-seq:
 •	Data import
 •	Quality control
@@ -49,10 +51,12 @@ The workflow includes following for single cell RNA-seq or scATAC-seq:
 •	Clustering
 •	Differential expression analysis for RNA seq / differential accessible region  + motif enrichment for ATAC-seq anaysis
 •	Reproduction of published figures
-
+```
 Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded using TCGAbiolinks R package and processed using DESeq2 and GSVA package to generate scores for predefined gene sets for subsequent survival analysis and KM curve generation.
 
 Technologies Used
+
+```
 •	R
 •	Seurat v5
 •	Signac
@@ -63,14 +67,17 @@ Technologies Used
 •	Matrix
 •	GenomicRanges
 •	Bioconductor packages
+```
 
 Results
 The reproduced figures are available in the Figures/ directory, including:
+```
 •	Quality-control visualizations
 •	Dimensionality reduction (UMAP)
 •	Cluster annotations
 •	Marker gene expression
 •	Figures corresponding to the publication
+```
 Where differences from the original publication exist, they are likely attributable to software version differences, random initialization, or package updates.
 
 Reproducibility
@@ -81,6 +88,7 @@ Disclaimer
 This repository is an independent educational reproduction of a published study. All scientific credit belongs to the original authors. This repository is intended solely to demonstrate computational and bioinformatics skills.
 
 Skills Demonstrated
+```
 •	Reproducible computational research
 •	Single-cell RNA-seq analysis
 •	Single-cell ATAC-seq analysis
@@ -89,7 +97,5 @@ Skills Demonstrated
 •	Data visualization
 •	Scientific programming
 •	Workflow organization
-
-
-
-
+```
+<img width="468" height="662" alt="image" src="https://github.com/user-attachments/assets/66fb8084-25a7-47e3-b4d7-d50844f84a47" />
