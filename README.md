@@ -2,20 +2,22 @@ Reproduction of Single-Cell RNA-seq and ATAC-seq Analysis
 
 Overview
 This repository contains my independent reproduction of the computational analyses presented in the following publication:
-```
-Citation: Taavitsainen S, Engedal N, Cao S, Handle F, Erickson A, Prekovic S, Wetterskog D, Tolonen T, Vuorinen EM, Kiviaho A, Nätkin R, Häkkinen T, Devlies W, Henttinen S, Kaarijärvi R, Lahnalampi M, Kaljunen H, Nowakowska K, Syvälä H, Bläuer M, Cremaschi P, Claessens F, Visakorpi T, Tammela TLJ, Murtola T, Granberg KJ, Lamb AD, Ketola K, Mills IG, Attard G, Wang W, Nykter M, Urbanucci A. Single-cell ATAC and RNA sequencing reveal pre-existing and persistent cells associated with prostate cancer relapse. Nat Commun. 2021 Sep 6;12(1):5307. doi: 10.1038/s41467-021-25624-1. PMID: 34489465; PMCID: PMC8421417.
-```
+
+> **Taavitsainen S, Engedal N, Cao S, et al.**  
+> Single-cell ATAC and RNA sequencing reveal pre-existing and persistent cells associated with prostate cancer relapse.  
+> *Nature Communications* (2021) 12:5307.  
+> DOI: 10.1038/s41467-021-25624-1
 
 
 The objective of this project was to reproduce the published figures and analytical workflow using the publicly available data for the project from the GEO repository and to gain hands-on experience with modern single-cell transcriptomic and epigenomic analysis pipelines.
 This repository is intended as a portfolio project demonstrating proficiency in reproducible computational biology, single-cell data analysis, and scientific programming.
-```
-Project Goals
-•	Reproduce key analyses from the published study.
-•	Validate reproducibility of the computational workflow.
-•	Implement the analysis from raw/publicly available data.
-•	Organize the workflow into reusable and well-documented scripts.
-```
+
+## Project Goals
+- Reproduce key analyses from the published study.
+- Validate reproducibility of the computational workflow.
+- Implement the analysis from raw/publicly available data.
+- Organize the workflow into reusable and well-documented scripts.
+
 
 Repository Structure
 ```
@@ -59,9 +61,7 @@ The workflow includes following for single cell RNA-seq or scATAC-seq:
 ```
 Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded using TCGAbiolinks R package and processed using DESeq2 and GSVA package to generate scores for predefined gene sets for subsequent survival analysis and KM curve generation.
 
-Technologies Used
-
-```
+## Technologies Used
 •	R
 •	Seurat v5
 •	Signac
@@ -72,7 +72,7 @@ Technologies Used
 •	Matrix
 •	GenomicRanges
 •	Bioconductor packages
-```
+
 
 Results
 The reproduced figures are available in the Figures/ directory, including:
@@ -103,4 +103,3 @@ Skills Demonstrated
 •	Scientific programming
 •	Workflow organization
 ```
-
