@@ -62,6 +62,8 @@ The workflow includes following for single cell RNA-seq or scATAC-seq:
 Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded using TCGAbiolinks R package and processed using DESeq2 and GSVA package to generate scores for predefined gene sets for subsequent survival analysis and KM curve generation.
 
 ## Technologies Used
+
+```
 •	R
 •	Seurat v5
 •	Signac
@@ -72,6 +74,7 @@ Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded usin
 •	Matrix
 •	GenomicRanges
 •	Bioconductor packages
+```
 
 
 Results
