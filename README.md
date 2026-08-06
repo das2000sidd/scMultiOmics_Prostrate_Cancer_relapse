@@ -13,7 +13,7 @@ Project Goals
 •	Organize the workflow into reusable and well-documented scripts.
 
 Repository Structure
-
+```
 Figures/
 	Figure1/
 	Figure2/
@@ -35,6 +35,7 @@ Scripts
 
 README.md
 sessionInfo
+```
 
 Analyses Performed
 The workflow includes following for single cell RNA-seq or scATAC-seq:
