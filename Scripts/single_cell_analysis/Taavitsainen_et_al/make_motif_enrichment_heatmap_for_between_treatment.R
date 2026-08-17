@@ -109,10 +109,6 @@ make_motif_heatmap <- function(
     output_height = 4
 ) {
   
-  # ============================================================
-  # 1. Read motif enrichment files
-  # ============================================================
-  
   motif_files <- paste0(
     condition1,
     "_vs_",
@@ -134,34 +130,18 @@ make_motif_heatmap <- function(
     cluster_data[[i]]$cluster <- i
   }
   
-  # ============================================================
-  # 2. Combine all clusters
-  # ============================================================
-  
   all_clusters_combined <- do.call(
     rbind,
     cluster_data
   )
   
-  # ============================================================
-  # 3. Select significant motifs
-  # ============================================================
-  
   sig_motif <- all_clusters_combined[
     all_clusters_combined$p.adjust.FDR < 0.05,
   ]
   
-  # ============================================================
-  # 4. Get motifs
-  # ============================================================
-  
   motifs <- unique(
     all_clusters_combined$motif.name
   )
-  
-  # ============================================================
-  # 5. Create fold-enrichment matrix
-  # ============================================================
   
   motif_fold_enrichment <- matrix(
     0,
@@ -175,10 +155,6 @@ make_motif_heatmap <- function(
     "C",
     1:n_clusters
   )
-  
-  # ============================================================
-  # 6. Fill matrix with fold enrichment
-  # ============================================================
   
   for (i in seq_along(cluster_data)) {
     
@@ -204,10 +180,6 @@ make_motif_heatmap <- function(
       "fold.enrichment"
     ]
   }
-  
-  # ============================================================
-  # 7. Order motifs
-  # ============================================================
   
   rownames_order <- c(
     "Ar",
@@ -240,18 +212,10 @@ make_motif_heatmap <- function(
     drop = FALSE
   ]
   
-  # ============================================================
-  # 8. Heatmap colour scale
-  # ============================================================
-  
   heatmap_max_val <- max(
     motif_fold_enrichment.o,
     na.rm = TRUE
   )
-  
-  # ============================================================
-  # 9. Make heatmap
-  # ============================================================
   
   heatmap <- pheatmap(
     motif_fold_enrichment.o,
@@ -272,11 +236,6 @@ make_motif_heatmap <- function(
     cluster_cols = FALSE,
     cluster_rows = FALSE
   )
-  
-  # ============================================================
-  # 10. Export
-  # ============================================================
-  
   if (!is.null(output_file)) {
     
     pdf(
@@ -290,10 +249,6 @@ make_motif_heatmap <- function(
     
     dev.off()
   }
-  
-  # ============================================================
-  # 11. Return useful objects
-  # ============================================================
   
   return(
     list(
