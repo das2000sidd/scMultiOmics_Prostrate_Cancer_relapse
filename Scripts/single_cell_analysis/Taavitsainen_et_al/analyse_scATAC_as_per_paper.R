@@ -851,21 +851,14 @@ run_dmso_dar_motif_analysis <- function(
     treatment.from.combined,
     output_prefix = "DMSO_motifs"
 ) {
-  
-  # ============================================================
-  # Libraries
-  # ============================================================
-  
+
   library(Seurat)
   library(Signac)
   library(TFBSTools)
   library(BSgenome.Hsapiens.UCSC.hg38)
   library(JASPAR2018)
   
-  
-  # ============================================================
-  # 1. Convert region into chr, start, end
-  # ============================================================
+  # Convert region into chr, start, end
   
   treatment.dar.anno[, c("chr", "start", "end")] <- do.call(
     rbind,
@@ -875,20 +868,10 @@ run_dmso_dar_motif_analysis <- function(
   treatment.dar.anno$start <- as.integer(treatment.dar.anno$start)
   treatment.dar.anno$end   <- as.integer(treatment.dar.anno$end)
   
-  
-  # ============================================================
-  # 2. Select significant DARs
-  # ============================================================
-  
   treatment_dar_sig <- treatment.dar.anno[
     treatment.dar.anno$p_val_BF < 0.05,
   ]
-  
-  
-  # ============================================================
-  # 3. Load JASPAR2018 motifs
-  # ============================================================
-  
+
   pfm <- getMatrixSet(
     x = JASPAR2018,
     opts = list(
@@ -896,12 +879,7 @@ run_dmso_dar_motif_analysis <- function(
       tax_group = "vertebrates"
     )
   )
-  
-  
-  # ============================================================
-  # 4. Select TFs of interest
-  # ============================================================
-  
+
   tf_keep <- c(
     "Ar",
     "CREB1",
@@ -944,11 +922,6 @@ run_dmso_dar_motif_analysis <- function(
     length(pfm.use)
   )
   
-  
-  # ============================================================
-  # 5. Prepare ATAC object
-  # ============================================================
-  
   DefaultAssay(treatment.from.combined) <- "peaks"
   
   
@@ -966,48 +939,31 @@ run_dmso_dar_motif_analysis <- function(
     pfm = pfm.use,
     verbose = TRUE
   )
-  
-  
-  # ============================================================
-  # 6. Identify clusters
-  # ============================================================
-  
+
   clusters <- sort(
     unique(treatment_dar_sig$cluster)
   )
-  
   
   message(
     "Clusters to analyse: ",
     paste(clusters, collapse = ", ")
   )
   
-  
-  # ============================================================
-  # 7. Run motif enrichment for each cluster
-  # ============================================================
-  
   motif_results <- list()
-  
-  
+
   for (cl in clusters) {
     
     message(
-      "\n====================================\n",
-      "Processing cluster ", cl,
-      "\n===================================="
+      "Processing cluster ", cl
     )
-    
     
     # Get DARs belonging to this cluster
     peaks_cluster <- treatment_dar_sig$gene[
       treatment_dar_sig$cluster == cl
     ]
     
-    
     # Remove duplicated peaks
     peaks_cluster <- unique(peaks_cluster)
-    
     
     # Skip clusters with no DARs
     if (length(peaks_cluster) == 0) {
@@ -1026,11 +982,8 @@ run_dmso_dar_motif_analysis <- function(
       "Number of DARs: ",
       length(peaks_cluster)
     )
-    
-    
-    # ----------------------------------------------------------
+  
     # Find motif enrichment
-    # ----------------------------------------------------------
     
     motif_result <- FindMotifs(
       object = treatment.from.combined,
@@ -1039,27 +992,12 @@ run_dmso_dar_motif_analysis <- function(
       verbose = TRUE
     )
     
-    
-    # ----------------------------------------------------------
-    # BH correction
-    # ----------------------------------------------------------
-    
     motif_result$p.adjust.FDR <- p.adjust(
       motif_result$pvalue,
       method = "BH"
     )
     
-    
-    # ----------------------------------------------------------
-    # Store result
-    # ----------------------------------------------------------
-    
     motif_results[[paste0("cluster_", cl)]] <- motif_result
-    
-    
-    # ----------------------------------------------------------
-    # Write result
-    # ----------------------------------------------------------
     
     output_file <- paste0(
       output_prefix,
@@ -1068,7 +1006,6 @@ run_dmso_dar_motif_analysis <- function(
       ".csv"
     )
     
-    
     write.csv(
       motif_result,
       file = output_file,
@@ -1076,17 +1013,7 @@ run_dmso_dar_motif_analysis <- function(
       quote = FALSE
     )
     
-    
-    message(
-      "Written: ",
-      output_file
-    )
   }
-  
-  
-  # ============================================================
-  # 8. Return results
-  # ============================================================
   
   return(
     list(
@@ -1101,11 +1028,6 @@ run_dmso_dar_motif_analysis(dmso.dar.anno, dmso.from.combined, "DMSO_motifs") ##
 run_dmso_dar_motif_analysis(enz.dar.anno, enz.from.combined, "ENZ_motifs") ## ran okay
 run_dmso_dar_motif_analysis(resa.dar.anno, resa.from.combined, "RESA_motifs") ## ran okay
 run_dmso_dar_motif_analysis(resb.dar.anno, resb.from.combined, "RESB_motifs")
-
-
-
-
-
 
 ## Compare old and new overlapping regions
 lncap.dar.anno <- read.table(file="Differentially_accessible_peaks_all_clusters_DMSO.txt",header = T,sep="\t", stringsAsFactors = F)
@@ -1154,7 +1076,6 @@ convert_loci_to_granges <- function(treatment_dar_sig_unique){
   
   return(treatment_dar_gr)
 }
-
 
 dmso_dar_gr <- convert_loci_to_granges(dmso_dar_sig_unique) ## conversion okay
 resa_dar_gr <- convert_loci_to_granges(resa_dar_sig_unique) ## conversion okay
@@ -1229,10 +1150,10 @@ ol <- findOverlapsOfPeaks(resb_dar_gr,
                           dar_resb_paper_gr,
                           ignore.strand = FALSE,
                           connectedPeaks="keepAll")
+
 ## venn diagram to show the overlaps
 makeVennDiagram(ol, connectedPeaks = "keepAll")
 dev.off()
-
 
 
 ## get scATAC open space for LNCAP ENZ48 vs LNCAP
@@ -1323,26 +1244,12 @@ run_dar_by_cluster <- function(
   
   library(Seurat)
   
-  # ============================================================
-  # 1. Set assay
-  # ============================================================
-  
   DefaultAssay(integrated) <- "peaks"
-  
-  
-  # ============================================================
-  # 2. Keep only the two conditions
-  # ============================================================
   
   obj <- subset(
     integrated,
     subset = Sample_Id %in% c(condition_1, condition_2)
   )
-  
-  
-  # ============================================================
-  # 3. Get clusters
-  # ============================================================
   
   clusters <- sort(
     unique(obj$seurat_clusters)
@@ -1360,23 +1267,13 @@ run_dar_by_cluster <- function(
     paste(clusters, collapse = ", ")
   )
   
-  
-  # ============================================================
-  # 4. Create output directory if necessary
-  # ============================================================
-  
   if (!dir.exists(output_dir)) {
     dir.create(
       output_dir,
       recursive = TRUE
     )
   }
-  
-  
-  # ============================================================
-  # 5. Run differential accessibility for each cluster
-  # ============================================================
-  
+
   DE_results <- list()
   
   for (cl in clusters) {
@@ -1385,12 +1282,7 @@ run_dar_by_cluster <- function(
       "Processing cluster: ",
       cl
     )
-    
-    
-    # ----------------------------------------------------------
-    # Cells belonging to this cluster
-    # ----------------------------------------------------------
-    
+  
     cells_cl <- rownames(integrated@meta.data)[
       integrated@meta.data$seurat_clusters == cl &
         integrated@meta.data$Sample_Id %in% c(condition_1, condition_2)
@@ -1401,12 +1293,7 @@ run_dar_by_cluster <- function(
       obj,
       cells = cells_cl
     )
-    
-    
-    # ----------------------------------------------------------
-    # Check that both conditions are present
-    # ----------------------------------------------------------
-    
+  
     condition_counts <- table(
       obj_cl$Sample_Id
     )
@@ -1427,15 +1314,7 @@ run_dar_by_cluster <- function(
       next
     }
     
-    
-    # ----------------------------------------------------------
-    # Differential accessibility
-    #
-    # ident.1 = condition_1
-    # ident.2 = condition_2
-    #
     # Positive avg_log2FC = more accessible in condition_1
-    # ----------------------------------------------------------
     
     de <- FindMarkers(
       object = obj_cl,
@@ -1448,26 +1327,11 @@ run_dar_by_cluster <- function(
       only.pos = TRUE
     )
     
-    
-    # ----------------------------------------------------------
-    # Add region and cluster information
-    # ----------------------------------------------------------
-    
     de$gene <- rownames(de)
     
     de$cluster <- cl
     
-    
-    # ----------------------------------------------------------
-    # Store result
-    # ----------------------------------------------------------
-    
     DE_results[[paste0("cluster_", cl)]] <- de
-    
-    
-    # ----------------------------------------------------------
-    # Write result
-    # ----------------------------------------------------------
     
     output_file <- file.path(
       output_dir,
@@ -1498,12 +1362,7 @@ run_dar_by_cluster <- function(
       output_file
     )
   }
-  
-  
-  # ============================================================
-  # 6. Return results
-  # ============================================================
-  
+
   return(DE_results)
   
 }
