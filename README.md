@@ -92,7 +92,7 @@ Where differences from the original publication exist, they are likely attributa
 
 Reproducibility
 The analysis scripts are provided in the approximate order they were executed.
-The workflow assumes access to the publicly available datasets described in the original publication.
+The cell ranger processed data was downloaded using accession id's provided in the paper. 
 
 Disclaimer
 This repository is an independent educational reproduction of a published study. All scientific credit belongs to the original authors. This repository is intended solely to demonstrate computational and bioinformatics skills.
