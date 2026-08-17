@@ -16,8 +16,6 @@ This repository is intended as a portfolio project demonstrating proficiency in 
 - Reproduce key analyses from the published study.
 - Validate reproducibility of the computational workflow.
 - Implement the analysis from raw/publicly available data.
-- Organize the workflow into reusable and well-documented scripts.
-
 
 Repository Structure
 ```
@@ -28,20 +26,17 @@ Figures/
 	Figure4/
 	Figure5/
 	Figure6/
-Figure7/
-QC scATAC seq/
-QC scRNA seq/
+    Figure7/
+
 
 Scripts
-	Preprocessing/
-	Spatial_RNASeq
+	FAIRE Seq Analysis
 	TCGA_Analysis
 	single_cell_analysis/
 		Chen_et_al/
 		Taavitsainen_et_al/
 
 README.md
-sessionInfo
 
 ```
 
@@ -102,9 +97,7 @@ Skills Demonstrated
 •	Reproducible computational research
 •	Single-cell RNA-seq analysis
 •	Single-cell ATAC-seq analysis
-•	Multiomic data integration
 •	Statistical analysis in R
 •	Data visualization
 •	Scientific programming
-•	Workflow organization
 ```
