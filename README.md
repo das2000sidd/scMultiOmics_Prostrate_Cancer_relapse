@@ -28,6 +28,12 @@ Figures/
 	Figure6/
     Figure7/
 
+Results/
+
+Integration/
+	Figures/
+	Results/
+	Scripts/
 
 Scripts
 	FAIRE Seq Analysis
