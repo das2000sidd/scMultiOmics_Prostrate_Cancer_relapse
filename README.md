@@ -40,7 +40,7 @@ README.md
 
 ```
 
-Analyses Performed
+Analyses Performed in individual omics
 ```
 The workflow includes following for single cell RNA-seq or scATAC-seq:
 •	Data import
@@ -55,6 +55,114 @@ The workflow includes following for single cell RNA-seq or scATAC-seq:
 •	Reproduction of published figures
 ```
 Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded using TCGAbiolinks R package and processed using DESeq2 and GSVA package to generate scores for predefined gene sets for subsequent survival analysis and KM curve generation.
+
+
+```
+Integrative analysis of scRNA-seq and scATAC-seq to identify
+```
+
+Integration of scRNA and scATAC to investigate transcription factor (TF) regulatory activity and chromatin accessibility changes in prostate cancer cells following androgen receptor (AR) pathway inhibition and in resistant cell states.
+
+The main objective is to determine whether changes in TF activity inferred from gene expression are accompanied by corresponding changes in accessibility of TF binding motifs.
+
+Following was the analysis workflow:
+
+SCENIC / AUCell analysis
+
+```
+Single-cell RNA-seq data were analysed using SCENIC-derived AUCell scores to estimate transcription factor regulon activity at the single-cell level.
+
+The analysis included:
+
+TF regulon activity distributions across treatments
+Treatment-specific median regulon activity
+Changes relative to DMSO
+Kruskal-Wallis testing across all treatments
+Pairwise Wilcoxon/Dunn testing
+Multiple-testing correction using the Benjamini-Hochberg FDR procedure
+
+```
+
+chromVAR analysis
+
+```
+Single-cell ATAC-seq data were analysed to quantify TF motif accessibility using chromVAR.
+
+Peak regions were annotated with JASPAR transcription factor motifs and GC bias was calculated before estimating chromVAR deviation scores.
+
+Motifs corresponding to TFs including:
+
+E2F1
+MYC
+JUND
+ELK4
+ETV1
+HOXB13
+RELA
+SOX9
+ELF1
+GRHL2
+
+were examined.
+
+For each TF motif, treatment-specific median chromVAR deviation scores and changes relative to DMSO were calculated.
+
+Pairwise Wilcoxon tests were performed between treatment groups, followed by Benjamini-Hochberg FDR correction.
+
+```
+
+SCENIC–chromVAR integration
+
+```
+
+SCENIC and chromVAR results were integrated to compare two complementary measurements:
+
+SCENIC/AUCell:
+TF regulatory activity inferred from transcriptional target-gene expression.
+
+chromVAR:
+Accessibility of genomic regions containing TF binding motifs.
+
+This provides a framework for distinguishing TFs showing:
+
+Increased regulon activity and increased motif accessibility
+Increased regulon activity without increased motif accessibility
+Decreased regulon activity and decreased motif accessibility
+Opposing transcriptional and chromatin changes
+
+Because not every SCENIC TF had a directly corresponding motif in the selected chromVAR motif set, TF-to-motif mappings were explicitly defined rather than assuming that every TF could be compared directly.
+
+```
+
+Main outputs
+
+```
+
+The analysis generates:
+
+Treatment-level SCENIC TF activity summaries
+SCENIC differential activity statistics
+Treatment-level chromVAR motif accessibility summaries
+chromVAR differential accessibility statistics
+SCENIC TF activity heatmaps
+chromVAR motif accessibility heatmaps
+Integrated SCENIC–chromVAR comparison tables
+
+The heatmaps display changes relative to DMSO, with statistical significance indicated using FDR-based significance annotations.
+
+```
+
+Interpretation
+
+```
+
+The integrated analysis is intended to identify regulatory programs associated with AR inhibition and resistance.
+
+In particular, TFs such as AR, MYC, E2F1, JUN/FOS and other prostate cancer-associated regulators can be examined for coordinated changes between transcriptional activity and chromatin accessibility.
+
+A concordant increase in SCENIC activity and chromVAR deviation may provide evidence that increased TF regulatory activity is accompanied by increased accessibility of its binding sites. Conversely, discordant patterns may indicate that TF activity changes are not simply explained by changes in global motif accessibility and may involve additional regulatory mechanisms.
+
+```
 
 ## Technologies Used
 
