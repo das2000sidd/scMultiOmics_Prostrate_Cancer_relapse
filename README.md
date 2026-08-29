@@ -129,12 +129,7 @@ TF regulatory activity inferred from transcriptional target-gene expression.
 chromVAR:
 Accessibility of genomic regions containing TF binding motifs.
 
-This provides a framework for distinguishing TFs showing:
-
-Increased regulon activity and increased motif accessibility
-Increased regulon activity without increased motif accessibility
-Decreased regulon activity and decreased motif accessibility
-Opposing transcriptional and chromatin changes
+This provides a framework for distinguishing TFs showing contrasting combinations of motif accessibility and TF regulon activity scores
 
 Because not every SCENIC TF had a directly corresponding motif in the selected chromVAR motif set, TF-to-motif mappings were explicitly defined rather than assuming that every TF could be compared directly.
 
