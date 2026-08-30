@@ -201,9 +201,9 @@ This repository is an independent educational reproduction of a published study.
 
 Skills Demonstrated
 ```
-•	Reproducible computational research
 •	Single-cell RNA-seq analysis
 •	Single-cell ATAC-seq analysis
+•	Integration of Single-cell level omics data
 •	Statistical analysis in R
 •	Data visualization
 •	Scientific programming
