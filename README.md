@@ -64,7 +64,7 @@ Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded usin
 
 
 
-
+## Advanced Analysis
 Integration of scRNA and scATAC to investigate transcription factor (TF) regulatory activity and chromatin accessibility changes in prostate cancer cells following androgen receptor (AR) pathway inhibition and in resistant cell states.
 
 The main objective is to determine whether changes in TF activity inferred from gene expression are accompanied by corresponding changes in accessibility of TF binding motifs.
