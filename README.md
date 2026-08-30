@@ -63,9 +63,7 @@ The workflow includes following for single cell RNA-seq or scATAC-seq:
 Additionally, for TCGA Prostate Cancer (PRAD) data, the data was downloaded using TCGAbiolinks R package and processed using DESeq2 and GSVA package to generate scores for predefined gene sets for subsequent survival analysis and KM curve generation.
 
 
-```
-Integrative analysis of scRNA-seq and scATAC-seq to identify
-```
+
 
 Integration of scRNA and scATAC to investigate transcription factor (TF) regulatory activity and chromatin accessibility changes in prostate cancer cells following androgen receptor (AR) pathway inhibition and in resistant cell states.
 
