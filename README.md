@@ -169,7 +169,7 @@ A concordant increase in SCENIC activity and chromVAR deviation may provide evid
 R
 Seurat v5
 Signac
-Harmony / FastMNN (where applicable)
+Harmony
 ggplot2
 patchwork
 dplyr
