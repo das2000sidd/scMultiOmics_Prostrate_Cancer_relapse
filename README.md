@@ -139,15 +139,9 @@ Main outputs
 
 The analysis generates:
 
-Treatment-level SCENIC TF activity summaries
-SCENIC differential activity statistics
-Treatment-level chromVAR motif accessibility summaries
-chromVAR differential accessibility statistics
-SCENIC TF activity heatmaps
-chromVAR motif accessibility heatmaps
-Integrated SCENIC–chromVAR comparison tables
+Changes in motif accessibility in AR antagonist ENZ treatment and ENZ resistant cell lines relative to control DMSO.
 
-The heatmaps display changes relative to DMSO, with statistical significance indicated using FDR-based significance annotations.
+It shows that resistant cell lines are characterised by increased chromatin accessibility in JUND and GRHL2 transcription factor motifs and maybe targeted for developing treatments in ENZ resistant prostate cancer patients.
 
 ```
 
